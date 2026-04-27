@@ -1,0 +1,14 @@
+.vscode/
+_pdf_pages/
+__pycache__/
+*.py[cod]
+
+.DS_Store
+._*
+
+mlp/data/
+mlp/models/
+mlp/figures/
+
+HW1_计算机视觉.pdf
+REPORT.md
