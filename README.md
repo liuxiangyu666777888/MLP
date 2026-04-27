@@ -6,23 +6,11 @@
 
 ## 1. 环境说明
 
-- Python: 建议 `3.10+`
-- 依赖库:
-  - `numpy`
-  - `matplotlib`
-- GPU: 不需要。本项目是 `NumPy + CPU` 实现，直接用 CPU 运行即可。
-
-如果你的环境里还没装依赖，可以执行：
 
 ```powershell
 pip install -r .\requirements.txt
 ```
 
-或者直接安装：
-
-```powershell
-pip install numpy matplotlib
-```
 
 ## 2. 目录结构
 
@@ -71,7 +59,6 @@ MLP/
 
 ### 4.0 准备数据集
 
-请先将 Fashion-MNIST 的 4 个原始文件放到 `mlp/data/` 目录下：
 
 - `train-images-idx3-ubyte.gz`
 - `train-labels-idx1-ubyte.gz`
@@ -170,14 +157,9 @@ python .\mlp\search.py
 - 若干按配置命名的模型文件
 - `mlp/models/best_model.pkl`
 
-说明：
+## 5. 执行顺序
 
-- `search.py` 会比单次训练耗时明显更长
-- 如果只想先完成报告，先运行 `train.py` 即可
 
-## 5. 推荐执行顺序
-
-建议按下面顺序运行：
 
 ```powershell
 python .\mlp\train.py
@@ -187,20 +169,6 @@ python .\mlp\visualize_weights.py
 python .\mlp\error_analysis.py
 python .\mlp\search.py
 ```
-
-如果你希望先做超参数搜索，再用最优模型生成图表，也可以使用：
-
-```powershell
-python .\mlp\search.py
-python .\mlp\test.py
-python .\mlp\visualize_weights.py
-python .\mlp\error_analysis.py
-```
-
-注意：
-
-- `plot_curves.py` 依赖 `history.pkl`，因此需要先运行 `train.py`
-- `test.py`、`visualize_weights.py`、`error_analysis.py` 依赖 `best_model.pkl`
 
 ## 6. 默认训练配置
 
@@ -221,47 +189,6 @@ python .\mlp\error_analysis.py
 }
 ```
 
-如果需要修改训练配置，可以直接编辑 `mlp/train.py` 中的 `default_config`，或者在 Python 中手动调用：
 
-```python
-from train import train
 
-train({
-    "epochs": 20,
-    "hidden_dim": 256,
-    "activation": "sigmoid",
-})
-```
 
-这段示例应在 `MLP/mlp` 目录下运行。
-
-## 7. 提交前检查
-
-提交作业前，建议确认以下内容已经准备好：
-
-- 代码已上传到 Public GitHub Repo
-- `README.md` 中运行方法清晰可复现
-- 报告中包含：
-  - 训练集/验证集的 Loss 曲线
-  - 验证集 Accuracy 曲线
-  - 第一层权重可视化结果
-  - 错误分析结果
-- 模型权重已上传到云盘，并在报告中附下载链接
-
-补充说明：
-
-- 本仓库只提交源码和说明文档，不提交 `mlp/data/`、`mlp/models/`、`mlp/figures/` 下的大文件
-- 训练好的模型权重请上传到 Google Drive 等外部云盘，并在实验报告中填写下载链接
-
-## 8. 说明
-
-本项目目前已经验证可直接运行以下流程：
-
-- 训练
-- 测试
-- 曲线绘制
-- 第一层权重可视化
-- 错误分析
-- 超参数搜索
-
-因此按本 README 的命令顺序执行即可复现实验结果。
